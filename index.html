@@ -9,13 +9,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@300;400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
   :root{
-    /* ============ 靛蓝瓷 (Indigo Porcelain) ============ */
-    --ink:#0a1f3d;
-    --ink-rgb:10,31,61;
-    --paper:#f1f3f5;
-    --paper-rgb:241,243,245;
-    --paper-tint:#e4e8ec;
-    --ink-tint:#152a4a;
+    /* ============ Astana Vibrant ============ */
+    --ink:#0f1b2d;
+    --ink-rgb:15,27,45;
+    --paper:#ffffff;
+    --paper-rgb:255,255,255;
+    --paper-tint:#f0f4f8;
+    --ink-tint:#1a2940;
+
+    /* Accent colors */
+    --gold:#D4A843;
+    --teal:#00B4A0;
+    --green:#22C55E;
+    --coral:#FF6B6B;
+    --blue:#3B82F6;
+    --purple:#8B5CF6;
+    --sky:#0EA5E9;
+    --amber:#F59E0B;
 
     /* ============ Шрифты ============ */
     --mono:"IBM Plex Mono",ui-monospace,monospace;
@@ -37,12 +47,20 @@
   .slide{width:100vw;height:100vh;flex:0 0 100vw;position:relative;padding:6vh 6vw 10vh 6vw;display:flex;flex-direction:column;overflow:hidden}
   .slide.light{color:var(--ink);background:var(--paper)}
   .slide.dark{color:var(--paper);background:var(--ink)}
+  .slide.gradient-teal{color:#fff;background:linear-gradient(135deg,#0f766e 0%,#0ea5e9 100%)}
+  .slide.gradient-gold{color:#fff;background:linear-gradient(135deg,#92400e 0%,#d97706 50%,#fbbf24 100%)}
+  .slide.gradient-blue{color:#fff;background:linear-gradient(135deg,#1e3a5f 0%,#3b82f6 100%)}
+  .slide.gradient-green{color:#fff;background:linear-gradient(135deg,#064e3b 0%,#10b981 100%)}
+  .slide.gradient-coral{color:#fff;background:linear-gradient(135deg,#7f1d1d 0%,#ef4444 50%,#fb923c 100%)}
+  .slide.gradient-purple{color:#fff;background:linear-gradient(135deg,#312e81 0%,#7c3aed 50%,#c084fc 100%)}
 
   .slide::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;transition:background .7s ease}
   .slide.light::before{background:rgba(var(--paper-rgb),.78);backdrop-filter:blur(3px)}
   .slide.dark::before{background:rgba(var(--ink-rgb),.78);backdrop-filter:blur(3px)}
   .slide.hero.light::before{background:rgba(var(--paper-rgb),.16);backdrop-filter:none}
   .slide.hero.dark::before{background:rgba(var(--ink-rgb),.12);backdrop-filter:none}
+  .slide[class*="gradient-"]::before{background:rgba(0,0,0,.08);backdrop-filter:none}
+  .slide.hero[class*="gradient-"]::before{background:rgba(0,0,0,.02);backdrop-filter:none}
   .slide.hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none}
   .slide.hero.light::after{background:linear-gradient(180deg,rgba(var(--paper-rgb),.28) 0%,rgba(var(--paper-rgb),0) 14%,rgba(var(--paper-rgb),0) 86%,rgba(var(--paper-rgb),.28) 100%)}
   .slide.hero.dark::after{background:linear-gradient(180deg,rgba(var(--ink-rgb),.32) 0%,rgba(var(--ink-rgb),0) 14%,rgba(var(--ink-rgb),0) 86%,rgba(var(--ink-rgb),.32) 100%)}
@@ -148,6 +166,28 @@
   body.motion-ready [data-anim="line"]{opacity:0;transform:translateY(10px)}
   body.motion-ready [data-animate="pipeline"] [data-anim]{opacity:.15}
 
+  /* ============ Colorful accents ============ */
+  .accent-badge{display:inline-block;padding:.6vh 1.4vw;border-radius:999px;font-family:var(--mono);font-size:max(11px,.85vw);letter-spacing:.16em;text-transform:uppercase;font-weight:600}
+  .badge-teal{background:#0ea5e9;color:#fff}
+  .badge-gold{background:#d97706;color:#fff}
+  .badge-green{background:#22c55e;color:#fff}
+  .badge-coral{background:#ef4444;color:#fff}
+  .badge-purple{background:#8b5cf6;color:#fff}
+  .color-card{border-radius:12px;padding:3vh 2.4vw;position:relative;overflow:hidden}
+  .color-card::before{content:"";position:absolute;inset:0;opacity:.1;background:currentColor}
+  .color-card.card-teal{background:linear-gradient(135deg,#0d9488,#06b6d4);color:#fff}
+  .color-card.card-gold{background:linear-gradient(135deg,#b45309,#f59e0b);color:#fff}
+  .color-card.card-green{background:linear-gradient(135deg,#15803d,#4ade80);color:#fff}
+  .color-card.card-blue{background:linear-gradient(135deg,#1d4ed8,#60a5fa);color:#fff}
+  .color-card.card-coral{background:linear-gradient(135deg,#dc2626,#fb923c);color:#fff}
+  .color-card.card-purple{background:linear-gradient(135deg,#6d28d9,#a78bfa);color:#fff}
+  .text-gold{color:#d97706}
+  .text-teal{color:#0ea5e9}
+  .text-green{color:#22c55e}
+  .text-coral{color:#ef4444}
+  .text-blue{color:#3b82f6}
+  .text-purple{color:#8b5cf6}
+
   @media (max-width:900px){
     .h-hero{font-size:14vw}
     .h-xl{font-size:9vw}
@@ -164,21 +204,35 @@
 
 <div id="deck">
 
-<!-- ====== PAGE 1: COVER (hero dark) ====== -->
-<section class="slide hero dark">
+<!-- ====== PAGE 1: COVER (gradient) ====== -->
+<section class="slide hero gradient-blue">
   <div class="chrome">
     <div>Проект для Акимата · Астана</div>
     <div>2026</div>
   </div>
   <div class="frame" style="display:grid; gap:4vh; align-content:center; min-height:80vh">
-    <div class="kicker" data-anim>Государственно-частное партнёрство</div>
-    <h1 class="h-hero" style="font-size:7.5vw" data-anim>Кофейня +<br>Туалет</h1>
-    <h2 class="h-sub" data-anim>Сеть павильонов, которая решает<br>санитарную проблему города</h2>
-    <p class="lead" style="max-width:60vw" data-anim>
-      Инвестор строит и содержит сеть кофеен с туалетами — город получает современную инфраструктуру без затрат из бюджета.
+    <div style="display:flex;gap:1.2vw;margin-bottom:1vh" data-anim>
+      <span class="accent-badge badge-gold">ГЧП</span>
+      <span class="accent-badge badge-green">0 ₸ из бюджета</span>
+    </div>
+    <h1 class="h-hero" style="font-size:8vw; text-shadow:0 4px 30px rgba(0,0,0,.3)" data-anim>Кофейня +<br>Туалет</h1>
+    <h2 class="h-sub" style="opacity:.9" data-anim>Сеть павильонов, которая решает<br>санитарную проблему Астаны</h2>
+    <p class="lead" style="max-width:60vw;opacity:.9" data-anim>
+      Инвестор строит и содержит — город получает современную инфраструктуру бесплатно.
     </p>
-    <div class="meta-row" data-anim>
-      <span>0 ₸ из бюджета</span><span>·</span><span>20 точек за 12 мес</span><span>·</span><span>60+ рабочих мест</span>
+    <div style="display:flex;gap:4vw;margin-top:3vh" data-anim>
+      <div style="text-align:center">
+        <div style="font-family:var(--serif-en);font-weight:800;font-size:4vw;line-height:1">20+</div>
+        <div style="font-family:var(--mono);font-size:.7vw;opacity:.7;margin-top:.5vh;letter-spacing:.2em">ТОЧЕК</div>
+      </div>
+      <div style="text-align:center">
+        <div style="font-family:var(--serif-en);font-weight:800;font-size:4vw;line-height:1">60+</div>
+        <div style="font-family:var(--mono);font-size:.7vw;opacity:.7;margin-top:.5vh;letter-spacing:.2em">РАБОЧИХ МЕСТ</div>
+      </div>
+      <div style="text-align:center">
+        <div style="font-family:var(--serif-en);font-weight:800;font-size:4vw;line-height:1">7</div>
+        <div style="font-family:var(--mono);font-size:.7vw;opacity:.7;margin-top:.5vh;letter-spacing:.2em">МЕС ОКУПАЕМОСТЬ</div>
+      </div>
     </div>
   </div>
   <div class="foot">
@@ -187,37 +241,37 @@
   </div>
 </section>
 
-<!-- ====== PAGE 2: KEY NUMBERS (light) ====== -->
+<!-- ====== PAGE 2: KEY NUMBERS (light, colorful cards) ====== -->
 <section class="slide light">
   <div class="chrome">
     <div>Ключевые цифры · Overview</div>
     <div>02 / 10</div>
   </div>
-  <div class="frame" style="padding-top:6vh">
+  <div class="frame" style="padding-top:5vh">
     <div class="kicker" data-anim>Проект в четырёх числах</div>
     <h2 class="h-xl" data-anim>Win-Win</h2>
-    <p class="lead" style="margin-bottom:5vh" data-anim>Город выигрывает. Бизнес зарабатывает.</p>
+    <p class="lead" style="margin-bottom:4vh" data-anim>Город выигрывает. Бизнес зарабатывает.</p>
 
-    <div class="grid-4" style="margin-top:4vh">
-      <div class="stat-card" data-anim>
-        <div class="stat-label">Budget Cost</div>
-        <div class="stat-nb">0 <span class="stat-unit">₸</span></div>
-        <div class="stat-note">Из бюджета города — ноль тенге</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2.4vw;margin-top:3vh">
+      <div class="color-card card-green" data-anim style="border-radius:16px;padding:4vh 2.5vw">
+        <div style="font-family:var(--mono);font-size:.75vw;opacity:.8;letter-spacing:.2em;text-transform:uppercase">BUDGET COST</div>
+        <div style="font-family:var(--serif-en);font-weight:800;font-size:6vw;line-height:1;margin:1.5vh 0">0 ₸</div>
+        <div style="font-size:max(14px,1.1vw);opacity:.9">Из бюджета города — ноль</div>
       </div>
-      <div class="stat-card" data-anim>
-        <div class="stat-label">Locations</div>
-        <div class="stat-nb">20+</div>
-        <div class="stat-note">Точек за первые 12 месяцев</div>
+      <div class="color-card card-blue" data-anim style="border-radius:16px;padding:4vh 2.5vw">
+        <div style="font-family:var(--mono);font-size:.75vw;opacity:.8;letter-spacing:.2em;text-transform:uppercase">LOCATIONS</div>
+        <div style="font-family:var(--serif-en);font-weight:800;font-size:6vw;line-height:1;margin:1.5vh 0">20+</div>
+        <div style="font-size:max(14px,1.1vw);opacity:.9">Точек за 12 месяцев</div>
       </div>
-      <div class="stat-card" data-anim>
-        <div class="stat-label">New Jobs</div>
-        <div class="stat-nb">60+</div>
-        <div class="stat-note">Рабочих мест для жителей</div>
+      <div class="color-card card-purple" data-anim style="border-radius:16px;padding:4vh 2.5vw">
+        <div style="font-family:var(--mono);font-size:.75vw;opacity:.8;letter-spacing:.2em;text-transform:uppercase">NEW JOBS</div>
+        <div style="font-family:var(--serif-en);font-weight:800;font-size:6vw;line-height:1;margin:1.5vh 0">60+</div>
+        <div style="font-size:max(14px,1.1vw);opacity:.9">Рабочих мест создано</div>
       </div>
-      <div class="stat-card" data-anim>
-        <div class="stat-label">Payback</div>
-        <div class="stat-nb">7 <span class="stat-unit">мес</span></div>
-        <div class="stat-note">Окупаемость одной точки</div>
+      <div class="color-card card-gold" data-anim style="border-radius:16px;padding:4vh 2.5vw">
+        <div style="font-family:var(--mono);font-size:.75vw;opacity:.8;letter-spacing:.2em;text-transform:uppercase">PAYBACK</div>
+        <div style="font-family:var(--serif-en);font-weight:800;font-size:6vw;line-height:1;margin:1.5vh 0">7 мес</div>
+        <div style="font-size:max(14px,1.1vw);opacity:.9">Окупаемость точки</div>
       </div>
     </div>
   </div>
@@ -227,16 +281,16 @@
   </div>
 </section>
 
-<!-- ====== PAGE 3: ACT I — PROBLEM (hero light) ====== -->
-<section class="slide hero light">
+<!-- ====== PAGE 3: ACT I — PROBLEM (gradient coral) ====== -->
+<section class="slide hero gradient-coral">
   <div class="chrome">
     <div>Акт I · Проблема</div>
     <div>Act I · 03 / 10</div>
   </div>
   <div class="frame" style="display:grid; gap:6vh; align-content:center; min-height:80vh">
-    <div class="kicker" data-anim>Act I</div>
-    <h1 class="h-hero" style="font-size:8vw" data-anim>Проблема</h1>
-    <p class="lead" style="max-width:55vw" data-anim>
+    <div class="kicker" style="opacity:.8" data-anim>Act I</div>
+    <h1 class="h-hero" style="font-size:8vw;text-shadow:0 4px 20px rgba(0,0,0,.2)" data-anim>Проблема</h1>
+    <p class="lead" style="max-width:55vw;opacity:.95" data-anim>
       Астана занимает последнее место среди столиц СНГ по обеспеченности общественными туалетами.
     </p>
   </div>
@@ -246,8 +300,8 @@
   </div>
 </section>
 
-<!-- ====== PAGE 4: PROBLEM DATA (dark) ====== -->
-<section class="slide dark">
+<!-- ====== PAGE 4: PROBLEM DATA (light, colorful bars) ====== -->
+<section class="slide light">
   <div class="chrome">
     <div>Данные · Statistics</div>
     <div>04 / 10</div>
@@ -255,41 +309,43 @@
   <div class="frame" style="padding-top:5vh">
     <div class="kicker" data-anim>Менее 4 объектов на 100 000 жителей</div>
     <h2 class="h-xl" style="font-size:5vw" data-anim>Астана отстаёт<br>в 8–10 раз</h2>
-    <p class="lead" style="margin-top:3vh; margin-bottom:4vh" data-anim>
-      Сравнение со столицами мира по числу общественных туалетов на 100 000 жителей.
+    <p class="lead" style="margin-top:2vh; margin-bottom:3vh" data-anim>
+      Общественные туалеты на 100 000 жителей — сравнение столиц.
     </p>
 
-    <div style="display:flex; flex-direction:column; gap:2vh; margin-top:2vh">
+    <div style="display:flex; flex-direction:column; gap:2.2vh; margin-top:2vh">
       <div data-anim style="display:flex; align-items:center; gap:2vw">
-        <span style="font-family:var(--mono);font-size:max(11px,.9vw);width:8vw;text-align:right;opacity:.7">Токио</span>
-        <div style="height:2.4vh;background:rgba(var(--paper-rgb),.3);width:72%;border-radius:2px"></div>
-        <span style="font-family:var(--serif-en);font-weight:700;font-size:1.4vw">36</span>
+        <span style="font-family:var(--mono);font-size:max(11px,.9vw);width:8vw;text-align:right;opacity:.8;font-weight:600">Токио</span>
+        <div style="height:3.2vh;background:linear-gradient(90deg,#3b82f6,#60a5fa);width:72%;border-radius:6px;box-shadow:0 2px 8px rgba(59,130,246,.3)"></div>
+        <span style="font-family:var(--serif-en);font-weight:800;font-size:1.6vw;color:#3b82f6">36</span>
       </div>
       <div data-anim style="display:flex; align-items:center; gap:2vw">
-        <span style="font-family:var(--mono);font-size:max(11px,.9vw);width:8vw;text-align:right;opacity:.7">Берлин</span>
-        <div style="height:2.4vh;background:rgba(var(--paper-rgb),.3);width:56%;border-radius:2px"></div>
-        <span style="font-family:var(--serif-en);font-weight:700;font-size:1.4vw">28</span>
+        <span style="font-family:var(--mono);font-size:max(11px,.9vw);width:8vw;text-align:right;opacity:.8;font-weight:600">Берлин</span>
+        <div style="height:3.2vh;background:linear-gradient(90deg,#8b5cf6,#a78bfa);width:56%;border-radius:6px;box-shadow:0 2px 8px rgba(139,92,246,.3)"></div>
+        <span style="font-family:var(--serif-en);font-weight:800;font-size:1.6vw;color:#8b5cf6">28</span>
       </div>
       <div data-anim style="display:flex; align-items:center; gap:2vw">
-        <span style="font-family:var(--mono);font-size:max(11px,.9vw);width:8vw;text-align:right;opacity:.7">Сеул</span>
-        <div style="height:2.4vh;background:rgba(var(--paper-rgb),.3);width:48%;border-radius:2px"></div>
-        <span style="font-family:var(--serif-en);font-weight:700;font-size:1.4vw">24</span>
+        <span style="font-family:var(--mono);font-size:max(11px,.9vw);width:8vw;text-align:right;opacity:.8;font-weight:600">Сеул</span>
+        <div style="height:3.2vh;background:linear-gradient(90deg,#0ea5e9,#38bdf8);width:48%;border-radius:6px;box-shadow:0 2px 8px rgba(14,165,233,.3)"></div>
+        <span style="font-family:var(--serif-en);font-weight:800;font-size:1.6vw;color:#0ea5e9">24</span>
       </div>
       <div data-anim style="display:flex; align-items:center; gap:2vw">
-        <span style="font-family:var(--mono);font-size:max(11px,.9vw);width:8vw;text-align:right;opacity:.7">Москва</span>
-        <div style="height:2.4vh;background:rgba(var(--paper-rgb),.3);width:30%;border-radius:2px"></div>
-        <span style="font-family:var(--serif-en);font-weight:700;font-size:1.4vw">15</span>
+        <span style="font-family:var(--mono);font-size:max(11px,.9vw);width:8vw;text-align:right;opacity:.8;font-weight:600">Москва</span>
+        <div style="height:3.2vh;background:linear-gradient(90deg,#f59e0b,#fbbf24);width:30%;border-radius:6px;box-shadow:0 2px 8px rgba(245,158,11,.3)"></div>
+        <span style="font-family:var(--serif-en);font-weight:800;font-size:1.6vw;color:#d97706">15</span>
       </div>
       <div data-anim style="display:flex; align-items:center; gap:2vw">
-        <span style="font-family:var(--mono);font-size:max(11px,.9vw);width:8vw;text-align:right;opacity:.7;font-weight:700;color:rgba(var(--paper-rgb),1)">Астана</span>
-        <div style="height:2.4vh;background:rgba(200,80,80,.7);width:8%;border-radius:2px"></div>
-        <span style="font-family:var(--serif-en);font-weight:700;font-size:1.4vw;color:rgba(200,80,80,1)">&lt;4</span>
+        <span style="font-family:var(--mono);font-size:max(11px,.9vw);width:8vw;text-align:right;font-weight:700;color:#ef4444">Астана</span>
+        <div style="height:3.2vh;background:linear-gradient(90deg,#ef4444,#f87171);width:8%;border-radius:6px;box-shadow:0 2px 8px rgba(239,68,68,.4)"></div>
+        <span style="font-family:var(--serif-en);font-weight:800;font-size:1.6vw;color:#ef4444">&lt;4</span>
       </div>
     </div>
 
-    <div class="callout" style="margin-top:5vh" data-anim>
-      Содержание муниципальных туалетов убыточно: ~6 млн ₸/год на объект. При 50 объектах — 300 млн ₸/год из бюджета. Текущая модель не масштабируется.
-      <div class="cite">Открытые данные акимата г. Астана</div>
+    <div style="margin-top:4vh;background:linear-gradient(135deg,#fef2f2,#fee2e2);border-left:4px solid #ef4444;padding:2.5vh 2vw;border-radius:0 10px 10px 0" data-anim>
+      <div style="font-family:var(--sans-zh);font-weight:600;font-size:max(15px,1.2vw);color:#991b1b;line-height:1.5">
+        Содержание муниципальных туалетов: ~6 млн ₸/год на объект. <br>50 объектов = 300 млн ₸/год из бюджета. Модель не масштабируется.
+      </div>
+      <div style="font-family:var(--mono);font-size:10px;opacity:.6;margin-top:1vh;letter-spacing:.2em;color:#991b1b">ОТКРЫТЫЕ ДАННЫЕ АКИМАТА Г. АСТАНА</div>
     </div>
   </div>
   <div class="foot">
@@ -298,16 +354,16 @@
   </div>
 </section>
 
-<!-- ====== PAGE 5: ACT II — SOLUTION (hero dark) ====== -->
-<section class="slide hero dark">
+<!-- ====== PAGE 5: ACT II — SOLUTION (gradient green) ====== -->
+<section class="slide hero gradient-green">
   <div class="chrome">
     <div>Акт II · Решение</div>
     <div>Act II · 05 / 10</div>
   </div>
   <div class="frame" style="display:grid; gap:6vh; align-content:center; min-height:80vh">
-    <div class="kicker" data-anim>Act II</div>
-    <h1 class="h-hero" style="font-size:8vw" data-anim>Решение</h1>
-    <p class="lead" style="max-width:55vw" data-anim>
+    <div class="kicker" style="opacity:.8" data-anim>Act II</div>
+    <h1 class="h-hero" style="font-size:8vw;text-shadow:0 4px 20px rgba(0,0,0,.2)" data-anim>Решение</h1>
+    <p class="lead" style="max-width:55vw;opacity:.95" data-anim>
       Бизнес финансирует социальную инфраструктуру. Кофейня оплачивает содержание туалета.
     </p>
   </div>
@@ -317,60 +373,54 @@
   </div>
 </section>
 
-<!-- ====== PAGE 6: HOW IT WORKS — PIPELINE (light) ====== -->
-<section class="slide light" data-animate="pipeline">
+<!-- ====== PAGE 6: HOW IT WORKS (light, colored cards) ====== -->
+<section class="slide light">
   <div class="chrome">
     <div>Модель · Concept</div>
     <div>Act II · 06 / 10</div>
   </div>
-  <div class="frame">
-    <div class="kicker">Павильон 36 м² · 12×3 м</div>
-    <h2 class="h-xl" style="font-size:4.8vw">Как это работает</h2>
+  <div class="frame" style="padding-top:4vh">
+    <div class="kicker" data-anim>Павильон 36 м² · 12×3 м</div>
+    <h2 class="h-xl" style="font-size:4.8vw" data-anim>Как это работает</h2>
 
-    <div class="pipeline-section">
-      <div class="pipeline-label">Структура павильона</div>
-      <div class="pipeline" data-cols="4">
-        <div class="step" data-anim="step">
-          <div class="step-nb">01</div>
-          <div class="step-title">Кофейня</div>
-          <div class="step-desc">26 м². To-go формат. Основной источник дохода</div>
-        </div>
-        <div class="step" data-anim="step">
-          <div class="step-nb">02</div>
-          <div class="step-title">Туалет</div>
-          <div class="step-desc">6 м². 2 кабинки. Современный стандарт комфорта</div>
-        </div>
-        <div class="step" data-anim="step">
-          <div class="step-nb">03</div>
-          <div class="step-title">Подсобка</div>
-          <div class="step-desc">4 м². Склад, оборудование, уборочный инвентарь</div>
-        </div>
-        <div class="step" data-anim="step">
-          <div class="step-nb">04</div>
-          <div class="step-title">Формат ГЧП</div>
-          <div class="step-desc">Город = земля. Инвестор = строительство + управление</div>
-        </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.5vw;margin-top:4vh">
+      <div class="color-card card-teal" style="border-radius:14px;padding:3vh 1.8vw" data-anim>
+        <div style="font-family:var(--serif-en);font-size:3vw;font-weight:800;opacity:.3">01</div>
+        <div style="font-family:var(--sans-zh);font-weight:700;font-size:1.6vw;margin:1vh 0">Кофейня</div>
+        <div style="font-size:max(12px,.9vw);opacity:.9;line-height:1.5">26 м². To-go формат. Основной источник дохода</div>
+      </div>
+      <div class="color-card card-blue" style="border-radius:14px;padding:3vh 1.8vw" data-anim>
+        <div style="font-family:var(--serif-en);font-size:3vw;font-weight:800;opacity:.3">02</div>
+        <div style="font-family:var(--sans-zh);font-weight:700;font-size:1.6vw;margin:1vh 0">Туалет</div>
+        <div style="font-size:max(12px,.9vw);opacity:.9;line-height:1.5">6 м². 2 кабинки. Современный стандарт</div>
+      </div>
+      <div class="color-card card-purple" style="border-radius:14px;padding:3vh 1.8vw" data-anim>
+        <div style="font-family:var(--serif-en);font-size:3vw;font-weight:800;opacity:.3">03</div>
+        <div style="font-family:var(--sans-zh);font-weight:700;font-size:1.6vw;margin:1vh 0">Подсобка</div>
+        <div style="font-size:max(12px,.9vw);opacity:.9;line-height:1.5">4 м². Склад, оборудование, инвентарь</div>
+      </div>
+      <div class="color-card card-gold" style="border-radius:14px;padding:3vh 1.8vw" data-anim>
+        <div style="font-family:var(--serif-en);font-size:3vw;font-weight:800;opacity:.3">04</div>
+        <div style="font-family:var(--sans-zh);font-weight:700;font-size:1.6vw;margin:1vh 0">Формат ГЧП</div>
+        <div style="font-size:max(12px,.9vw);opacity:.9;line-height:1.5">Город = земля. Инвестор = всё остальное</div>
       </div>
     </div>
 
-    <div class="pipeline-section">
-      <div class="pipeline-label">Принцип финансирования</div>
-      <div class="pipeline" data-cols="3">
-        <div class="step" data-anim="step">
-          <div class="step-nb">A</div>
-          <div class="step-title">Доход от кофе</div>
-          <div class="step-desc">2.5 млн ₸/мес — основной поток</div>
-        </div>
-        <div class="step" data-anim="step">
-          <div class="step-nb">B</div>
-          <div class="step-title">Доход от туалета</div>
-          <div class="step-desc">450 тыс ₸/мес — дополнительный поток</div>
-        </div>
-        <div class="step" data-anim="step">
-          <div class="step-nb">C</div>
-          <div class="step-title">Чистая прибыль</div>
-          <div class="step-desc">1.27 млн ₸/мес после всех расходов</div>
-        </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5vw;margin-top:3vh">
+      <div style="background:#f0fdf4;border:2px solid #22c55e;border-radius:14px;padding:2.5vh 1.8vw;text-align:center" data-anim>
+        <div style="font-family:var(--mono);font-size:.7vw;color:#15803d;letter-spacing:.2em;text-transform:uppercase">Доход от кофе</div>
+        <div style="font-family:var(--serif-en);font-weight:800;font-size:3.5vw;color:#15803d;margin:.8vh 0">2.5М</div>
+        <div style="font-size:max(12px,.9vw);color:#166534">₸/мес — основной</div>
+      </div>
+      <div style="background:#eff6ff;border:2px solid #3b82f6;border-radius:14px;padding:2.5vh 1.8vw;text-align:center" data-anim>
+        <div style="font-family:var(--mono);font-size:.7vw;color:#1d4ed8;letter-spacing:.2em;text-transform:uppercase">Доход от туалета</div>
+        <div style="font-family:var(--serif-en);font-weight:800;font-size:3.5vw;color:#1d4ed8;margin:.8vh 0">450К</div>
+        <div style="font-size:max(12px,.9vw);color:#1e40af">₸/мес — дополнительный</div>
+      </div>
+      <div style="background:#fefce8;border:2px solid #eab308;border-radius:14px;padding:2.5vh 1.8vw;text-align:center" data-anim>
+        <div style="font-family:var(--mono);font-size:.7vw;color:#a16207;letter-spacing:.2em;text-transform:uppercase">Чистая прибыль</div>
+        <div style="font-family:var(--serif-en);font-weight:800;font-size:3.5vw;color:#a16207;margin:.8vh 0">1.27М</div>
+        <div style="font-size:max(12px,.9vw);color:#92400e">₸/мес на точку</div>
       </div>
     </div>
   </div>
@@ -380,7 +430,7 @@
   </div>
 </section>
 
-<!-- ====== PAGE 7: FINANCIALS (dark) ====== -->
+<!-- ====== PAGE 7: FINANCIALS (dark, colorful rows) ====== -->
 <section class="slide dark">
   <div class="chrome">
     <div>Финансы · P&L</div>
@@ -390,42 +440,52 @@
     <div class="kicker" data-anim>Unit-экономика одного павильона</div>
     <h2 class="h-xl" style="font-size:4.8vw" data-anim>Самоокупаемая<br>модель</h2>
 
-    <div style="margin-top:5vh; display:flex; flex-direction:column; gap:0">
+    <div style="margin-top:4vh; display:flex; flex-direction:column; gap:0">
       <div class="rowline" data-anim>
-        <div class="k" style="color:rgba(100,200,140,1)">+2 500 000</div>
+        <div class="k" style="color:#4ade80;font-size:2vw">+2 500 000</div>
         <div class="v">Выручка кофейня (100 чеков × 2 500 ₸ × 10 ч)</div>
-        <div class="m">Revenue</div>
+        <div class="m" style="color:#4ade80">Revenue</div>
       </div>
       <div class="rowline" data-anim>
-        <div class="k" style="color:rgba(100,200,140,.8)">+450 000</div>
+        <div class="k" style="color:#38bdf8;font-size:2vw">+450 000</div>
         <div class="v">Выручка туалет (150 посещений × 100 ₸ × 30 дн)</div>
-        <div class="m">Revenue</div>
+        <div class="m" style="color:#38bdf8">Revenue</div>
       </div>
       <div class="rowline" data-anim>
-        <div class="k" style="color:rgba(200,100,100,.8)">−750 000</div>
+        <div class="k" style="color:#f87171">−750 000</div>
         <div class="v">Себестоимость продукции (30%)</div>
-        <div class="m">COGS</div>
+        <div class="m" style="color:#f87171">COGS</div>
       </div>
       <div class="rowline" data-anim>
-        <div class="k" style="color:rgba(200,100,100,.8)">−680 000</div>
+        <div class="k" style="color:#fb923c">−680 000</div>
         <div class="v">ФОТ: 2 бариста + 1 уборщик</div>
-        <div class="m">Payroll</div>
+        <div class="m" style="color:#fb923c">Payroll</div>
       </div>
       <div class="rowline" data-anim>
-        <div class="k" style="color:rgba(200,100,100,.7)">−250 000</div>
+        <div class="k" style="color:#fbbf24">−250 000</div>
         <div class="v">Аренда, коммунальные, уборка, расходники</div>
-        <div class="m">OpEx</div>
+        <div class="m" style="color:#fbbf24">OpEx</div>
       </div>
-      <div class="rowline" data-anim>
-        <div class="k" style="font-size:2.2vw;color:rgba(100,200,140,1)">= 1 270 000</div>
-        <div class="v" style="font-weight:700">Чистая прибыль на точку в месяц</div>
-        <div class="m">Net Profit</div>
+      <div style="margin-top:2vh;background:linear-gradient(135deg,#064e3b,#10b981);border-radius:12px;padding:2.5vh 2.5vw;display:grid;grid-template-columns:1fr 2fr 1fr;gap:2vw;align-items:center" data-anim>
+        <div style="font-family:var(--serif-en);font-weight:800;font-size:2.6vw;color:#fff">= 1 270 000</div>
+        <div style="font-size:max(14px,1.2vw);font-weight:700;color:#fff">Чистая прибыль на точку в месяц</div>
+        <div style="font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.7);text-align:right">NET PROFIT</div>
       </div>
     </div>
 
-    <div class="callout" style="margin-top:4vh" data-anim>
-      ROI 152% за первый год. Окупаемость инвестиций — 7 месяцев. Город не субсидирует ни одного тенге.
-      <div class="cite">Расчёты инициатора проекта</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5vw;margin-top:3vh">
+      <div style="background:rgba(74,222,128,.12);border:1px solid rgba(74,222,128,.3);border-radius:10px;padding:2vh 1.5vw;text-align:center" data-anim>
+        <div style="font-family:var(--serif-en);font-weight:800;font-size:3vw;color:#4ade80">152%</div>
+        <div style="font-size:max(11px,.85vw);opacity:.7;margin-top:.5vh">ROI за 1 год</div>
+      </div>
+      <div style="background:rgba(56,189,248,.12);border:1px solid rgba(56,189,248,.3);border-radius:10px;padding:2vh 1.5vw;text-align:center" data-anim>
+        <div style="font-family:var(--serif-en);font-weight:800;font-size:3vw;color:#38bdf8">7 мес</div>
+        <div style="font-size:max(11px,.85vw);opacity:.7;margin-top:.5vh">Окупаемость</div>
+      </div>
+      <div style="background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.3);border-radius:10px;padding:2vh 1.5vw;text-align:center" data-anim>
+        <div style="font-family:var(--serif-en);font-weight:800;font-size:3vw;color:#fbbf24">0 ₸</div>
+        <div style="font-size:max(11px,.85vw);opacity:.7;margin-top:.5vh">Из бюджета</div>
+      </div>
     </div>
   </div>
   <div class="foot">
@@ -480,62 +540,55 @@
   </div>
 </section>
 
-<!-- ====== PAGE 9: ROADMAP — PIPELINE (hero light) ====== -->
-<section class="slide dark" data-animate="pipeline">
+<!-- ====== PAGE 9: ROADMAP (light, colorful timeline) ====== -->
+<section class="slide light">
   <div class="chrome">
     <div>Дорожная карта · Roadmap</div>
     <div>09 / 10</div>
   </div>
-  <div class="frame" style="padding-top:5vh">
-    <div class="kicker">4 фазы за 12 месяцев</div>
-    <h2 class="h-xl" style="font-size:4.8vw">Roadmap</h2>
+  <div class="frame" style="padding-top:4vh">
+    <div class="kicker" data-anim>4 фазы за 12 месяцев</div>
+    <h2 class="h-xl" style="font-size:4.8vw" data-anim>Roadmap</h2>
 
-    <div class="pipeline-section" style="margin-top:5vh">
-      <div class="pipeline-label">От согласования до полного охвата</div>
-      <div class="pipeline" data-cols="4">
-        <div class="step" data-anim="step">
-          <div class="step-nb">Q1</div>
-          <div class="step-title">Согласование</div>
-          <div class="step-desc">Локации с Акиматом. Проект павильона. Архитектурный отдел. Документация</div>
-        </div>
-        <div class="step" data-anim="step">
-          <div class="step-nb">Q1–Q2</div>
-          <div class="step-title">Пилот</div>
-          <div class="step-desc">1 павильон. Тест модели, замер трафика, обратная связь от горожан</div>
-        </div>
-        <div class="step" data-anim="step">
-          <div class="step-nb">Q2–Q3</div>
-          <div class="step-title">Расширение</div>
-          <div class="step-desc">5 точек в ключевых локациях: парки, набережная, центр города</div>
-        </div>
-        <div class="step" data-anim="step">
-          <div class="step-nb">Q3–Q4</div>
-          <div class="step-title">Масштаб</div>
-          <div class="step-desc">20 точек. Все районы: Есиль, Алматы, Сарыарка, Байконыр</div>
-        </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.5vw;margin-top:4vh">
+      <div style="border-radius:14px;padding:3vh 1.5vw;background:linear-gradient(180deg,#dbeafe,#eff6ff);border-top:4px solid #3b82f6" data-anim>
+        <div style="font-family:var(--mono);font-size:.75vw;color:#3b82f6;letter-spacing:.2em;font-weight:600">Q1</div>
+        <div style="font-family:var(--sans-zh);font-weight:700;font-size:1.5vw;color:#1e3a5f;margin:1.5vh 0">Согласование</div>
+        <div style="font-size:max(12px,.9vw);color:#334155;line-height:1.5">Локации с Акиматом. Проект павильона. Архитектурный отдел</div>
+      </div>
+      <div style="border-radius:14px;padding:3vh 1.5vw;background:linear-gradient(180deg,#d1fae5,#ecfdf5);border-top:4px solid #10b981" data-anim>
+        <div style="font-family:var(--mono);font-size:.75vw;color:#10b981;letter-spacing:.2em;font-weight:600">Q1–Q2</div>
+        <div style="font-family:var(--sans-zh);font-weight:700;font-size:1.5vw;color:#064e3b;margin:1.5vh 0">Пилот</div>
+        <div style="font-size:max(12px,.9vw);color:#334155;line-height:1.5">1 павильон. Тест модели, замер трафика, фидбэк</div>
+      </div>
+      <div style="border-radius:14px;padding:3vh 1.5vw;background:linear-gradient(180deg,#fef3c7,#fffbeb);border-top:4px solid #f59e0b" data-anim>
+        <div style="font-family:var(--mono);font-size:.75vw;color:#d97706;letter-spacing:.2em;font-weight:600">Q2–Q3</div>
+        <div style="font-family:var(--sans-zh);font-weight:700;font-size:1.5vw;color:#78350f;margin:1.5vh 0">Расширение</div>
+        <div style="font-size:max(12px,.9vw);color:#334155;line-height:1.5">5 точек: парки, набережная, центр города</div>
+      </div>
+      <div style="border-radius:14px;padding:3vh 1.5vw;background:linear-gradient(180deg,#ede9fe,#f5f3ff);border-top:4px solid #8b5cf6" data-anim>
+        <div style="font-family:var(--mono);font-size:.75vw;color:#7c3aed;letter-spacing:.2em;font-weight:600">Q3–Q4</div>
+        <div style="font-family:var(--sans-zh);font-weight:700;font-size:1.5vw;color:#3b0764;margin:1.5vh 0">Масштаб</div>
+        <div style="font-size:max(12px,.9vw);color:#334155;line-height:1.5">20 точек. Все районы: Есиль, Алматы, Сарыарка, Байконыр</div>
       </div>
     </div>
 
-    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:2vw; margin-top:5vh">
-      <div class="stat" data-anim>
-        <div class="m">Year 1 Total</div>
-        <div class="n" style="font-size:5vw">20</div>
-        <div class="l">Павильонов</div>
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:1.5vw; margin-top:3vh">
+      <div style="text-align:center;background:#f0fdf4;border-radius:12px;padding:2.5vh 1vw" data-anim>
+        <div style="font-family:var(--serif-en);font-weight:800;font-size:4vw;color:#15803d">20</div>
+        <div style="font-family:var(--mono);font-size:.7vw;color:#166534;letter-spacing:.15em;margin-top:.5vh">ПАВИЛЬОНОВ</div>
       </div>
-      <div class="stat" data-anim>
-        <div class="m">Daily Visits</div>
-        <div class="n" style="font-size:5vw">3K+</div>
-        <div class="l">Посещений/день</div>
+      <div style="text-align:center;background:#eff6ff;border-radius:12px;padding:2.5vh 1vw" data-anim>
+        <div style="font-family:var(--serif-en);font-weight:800;font-size:4vw;color:#1d4ed8">3K+</div>
+        <div style="font-family:var(--mono);font-size:.7vw;color:#1e40af;letter-spacing:.15em;margin-top:.5vh">ПОСЕЩЕНИЙ/ДЕНЬ</div>
       </div>
-      <div class="stat" data-anim>
-        <div class="m">Annual</div>
-        <div class="n" style="font-size:5vw">1M+</div>
-        <div class="l">Посещений/год</div>
+      <div style="text-align:center;background:#fefce8;border-radius:12px;padding:2.5vh 1vw" data-anim>
+        <div style="font-family:var(--serif-en);font-weight:800;font-size:4vw;color:#a16207">1M+</div>
+        <div style="font-family:var(--mono);font-size:.7vw;color:#92400e;letter-spacing:.15em;margin-top:.5vh">ПОСЕЩЕНИЙ/ГОД</div>
       </div>
-      <div class="stat" data-anim>
-        <div class="m">Budget Saved</div>
-        <div class="n" style="font-size:4.2vw">120M</div>
-        <div class="l">₸ экономии/год</div>
+      <div style="text-align:center;background:#fdf2f8;border-radius:12px;padding:2.5vh 1vw" data-anim>
+        <div style="font-family:var(--serif-en);font-weight:800;font-size:3.5vw;color:#be185d">120M ₸</div>
+        <div style="font-family:var(--mono);font-size:.7vw;color:#9d174d;letter-spacing:.15em;margin-top:.5vh">ЭКОНОМИИ/ГОД</div>
       </div>
     </div>
   </div>
@@ -545,39 +598,36 @@
   </div>
 </section>
 
-<!-- ====== PAGE 10: CTA (hero dark) ====== -->
-<section class="slide hero dark">
+<!-- ====== PAGE 10: CTA (gradient-purple) ====== -->
+<section class="slide hero gradient-purple">
   <div class="chrome">
     <div>Следующий шаг · Next Step</div>
     <div>10 / 10</div>
   </div>
-  <div class="frame" style="display:grid; gap:6vh; align-content:center; min-height:80vh">
-    <div class="kicker" data-anim>Запрос к Акимату</div>
-    <h1 class="h-hero" style="font-size:6.5vw; line-height:1.15">
+  <div class="frame" style="display:grid; gap:5vh; align-content:center; min-height:80vh">
+    <div class="kicker" style="opacity:.8" data-anim>Запрос к Акимату</div>
+    <h1 class="h-hero" style="font-size:6.5vw; line-height:1.15; text-shadow:0 4px 30px rgba(0,0,0,.3)">
       <span data-anim style="display:block">Выделить землю.</span>
       <span data-anim style="display:block">Мы построим.</span>
     </h1>
-    <p class="lead" style="max-width:55vw" data-anim>
-      Всё остальное — строительство, оборудование, управление, содержание — за наш счёт. Город получает инфраструктуру без затрат.
+    <p class="lead" style="max-width:55vw;opacity:.95" data-anim>
+      Строительство, оборудование, управление, содержание — всё за наш счёт. Город получает инфраструктуру бесплатно.
     </p>
-    <div style="display:flex; gap:4vw; margin-top:4vh" data-anim>
-      <div class="stat">
-        <div class="m">Investment</div>
-        <div class="n" style="font-size:4vw">100%</div>
-        <div class="l">Частные инвестиции</div>
+    <div style="display:flex; gap:3vw; margin-top:3vh" data-anim>
+      <div style="background:rgba(255,255,255,.15);backdrop-filter:blur(10px);border-radius:14px;padding:2.5vh 2vw;text-align:center;min-width:10vw">
+        <div style="font-family:var(--serif-en);font-weight:800;font-size:3.5vw">100%</div>
+        <div style="font-family:var(--mono);font-size:.7vw;opacity:.8;letter-spacing:.15em;margin-top:.5vh">ЧАСТНЫЕ ИНВЕСТИЦИИ</div>
       </div>
-      <div class="stat">
-        <div class="m">Budget</div>
-        <div class="n" style="font-size:4vw">0 ₸</div>
-        <div class="l">Из бюджета</div>
+      <div style="background:rgba(255,255,255,.15);backdrop-filter:blur(10px);border-radius:14px;padding:2.5vh 2vw;text-align:center;min-width:10vw">
+        <div style="font-family:var(--serif-en);font-weight:800;font-size:3.5vw">0 ₸</div>
+        <div style="font-family:var(--mono);font-size:.7vw;opacity:.8;letter-spacing:.15em;margin-top:.5vh">ИЗ БЮДЖЕТА</div>
       </div>
-      <div class="stat">
-        <div class="m">Timeline</div>
-        <div class="n" style="font-size:4vw">2–3</div>
-        <div class="l">Месяца до пилота</div>
+      <div style="background:rgba(255,255,255,.15);backdrop-filter:blur(10px);border-radius:14px;padding:2.5vh 2vw;text-align:center;min-width:10vw">
+        <div style="font-family:var(--serif-en);font-weight:800;font-size:3.5vw">2–3</div>
+        <div style="font-family:var(--mono);font-size:.7vw;opacity:.8;letter-spacing:.15em;margin-top:.5vh">МЕС ДО ПИЛОТА</div>
       </div>
     </div>
-    <div class="meta-row" style="margin-top:4vh" data-anim>
+    <div class="meta-row" style="margin-top:3vh;opacity:.7" data-anim>
       <span>Контакты: ___________</span><span>·</span><span>Email: ___________</span><span>·</span><span>Телефон: ___________</span>
     </div>
   </div>
@@ -609,10 +659,10 @@ void main(){
     p.y+=0.1/i*cos(i*2.0*p.x+u_time*0.3)-0.05;
   }
   float r=length(p);float ang=atan(p.y,p.x);
-  vec3 a=vec3(0.06,0.08,0.14);
-  vec3 b=vec3(0.03,0.04,0.06);
+  vec3 a=vec3(0.12,0.10,0.18);
+  vec3 b=vec3(0.08,0.06,0.10);
   vec3 c=vec3(1.0,1.0,1.0);
-  vec3 d=vec3(0.15,0.25,0.45);
+  vec3 d=vec3(0.20,0.35,0.55);
   vec3 col=palette(r*1.5+p0.x*0.5+u_time*0.1,a,b,c,d);
   float disp=sin(r*25.0-u_time*1.5+ang*2.0)*0.5+0.5;
   col+=vec3(disp*0.01,disp*0.012,disp*0.025);
